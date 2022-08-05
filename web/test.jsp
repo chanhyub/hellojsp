@@ -7,7 +7,8 @@
 --%>
 <%@ page contentType="application/json;charset=UTF-8" language="java" %>
 <%
-    String newsData = NaverApiSearch.newsApi("불금");
+    String search = request.getParameter("search");
+    String newsData = NaverApiSearch.newsApi(search);
     out.println(newsData);
 %>
 

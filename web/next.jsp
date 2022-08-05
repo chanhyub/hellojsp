@@ -86,9 +86,25 @@
     <title>Title</title>
 </head>
 <body>
-    form.jsp에서 전달된 데이터 <%=search %>
+form.jsp에서 전달된 데이터 <span id="search"><%=search %></span><br>
+
 <%for (SearchDto d: list) {%>
     검색어 : <%=d.getSearch()%>(<%=d.getCnt()%>)<br>
     <%}%>
+<div></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+                var s = $("#search").text();
+                //alert(s);
+                $.getJSON("test.jsp?search="+s, function(result){
+                        $.each(result.items, function(i, field){
+                            var html = "<a href='" + field.link + "'>" + field.title + "</a><br>"
+                        $("div").append(html);
+                    });
+                });
+        });
+    </script>
+
 </body>
 </html>
